@@ -61,7 +61,7 @@ sudo xbps-install -y firefox yazi clang cmake fzf ripgrep fd bat lsd nerd-fonts 
     font-fira-otf font-fira-ttf font-firacode font-hack-ttf font-iosevka noto-fonts-emoji libtool libtool xwayland-satellite wireplumber-elogind  \
     dbus-glib dbus-glib-devel dbus-libs pipewire alsa-pipewire easyeffects gstreamer1-pipewire libjack-pipewire libpipewire pipewire              \
     pipewire-devel pipewire-doc wireplumber wireplumber-devel mesa-dri vulkan-loader mesa-vulkan-intel intel-video-accel niri fuzzel mako Waybar  \
-    rust-analyzer qbittorrent flatpak gnome-software kde-plasma texlive groff font-hack-ttf qt6ct NetworkManager network-manager-applet;
+    rust-analyzer qbittorrent flatpak gnome-software kde-plasma texlive groff font-hack-ttf qt6ct NetworkManager network-manager-applet grim;
 
 if [ ! "$SHELL" = "/usr/bin/zsh" ]; then
 chsh -s /usr/bin/zsh

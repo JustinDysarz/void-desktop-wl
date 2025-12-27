@@ -31,6 +31,7 @@ alias ll='lsd -lh'
 alias la='lsd -lha'
 alias poweroff='sudo poweroff'
 alias reboot='sudo reboot'
+alias fastfetch='fastfetch --logo void2_small'
 
 set -o vi
 
