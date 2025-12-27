@@ -1,0 +1,186 @@
+// =============================================================================
+//
+// Waybar configuration
+//
+// Configuration reference: https://github.com/Alexays/Waybar/wiki/Configuration
+//
+// =============================================================================
+
+{
+// -------------------------------------------------------------------------
+// Global configuration
+// -------------------------------------------------------------------------
+
+"layer": "top",
+
+"position": "bottom",
+"height": 24,
+"spacing": 4,
+"modules-left": [
+"wlr/workspaces",
+"wlr/taskbar"
+],
+
+// If height property would be not present, it\'d be calculated dynamically
+
+"modules-right": [
+"tray",
+"pulseaudio",
+"network",
+//"memory",
+"cpu",
+"temperature",
+"battery",
+"clock#date",
+"clock#time",
+"group/power"
+],
+
+
+// -------------------------------------------------------------------------
+// Modules
+// -------------------------------------------------------------------------
+
+"battery": {
+"interval": 10,
+"states": {
+"warning": 30,
+"critical": 15
+},
+// Connected to AC
+"format": "[  {icon}  {capacity}%]", // Icon: bolt
+// Not connected to AC
+"format-discharging": "[{icon}  {capacity}%]",
+"format-icons": [
+"", // Icon: battery-full
+"", // Icon: battery-three-quarters
+"", // Icon: battery-half
+"", // Icon: battery-quarter
+""  // Icon: battery-empty
+],
+"tooltip": true
+},
+
+"clock#time": {
+"interval": 1,
+"format": "[{:%H:%M:%S}]",
+"tooltip": false
+},
+
+"clock#date": {
+"interval": 10,
+"format": "[  {:%e %b %Y]}", // Icon: calendar-alt
+"tooltip-format": "[{:%e %B %Y}]"
+},
+
+"cpu": {
+"interval": 5,
+"format": "[  {usage}% ({load})]", // Icon: microchip
+"states": {
+"warning": 70,
+"critical": 90
+}
+},
+
+//"memory": {
+//"interval": 5,
+//"format": "  {}%", // Icon: memory
+//"states": {
+//"warning": 70,
+//"critical": 90
+//}
+//},
+
+"network": {
+"interval": 5,
+"format-wifi": "[  {essid} {signalStrength}%]", // Icon: wifi
+"format-ethernet": "  {ifname}: {ipaddr}/{cidr}", // Icon: ethernet
+"format-disconnected": "⚠  Disconnected",
+"tooltip-format": "{ifname}: {ipaddr}"
+},
+
+"pulseaudio": {
+"scroll-step": 1,
+"format": "[{icon}  {volume}%]",
+"format-bluetooth": "{icon}  {volume}%",
+"format-muted": "",
+"format-icons": {
+"headphones": "",
+"handsfree": "",
+"headset": "",
+"phone": "",
+"portable": "",
+"car": "",
+"default": ["", ""]
+},
+"on-click": "pavucontrol"
+},
+
+"temperature": {
+"critical-threshold": 80,
+"interval": 5,
+"format": "[{icon}  {temperatureC}°C]",
+"format-icons": [
+"", // Icon: temperature-empty
+"", // Icon: temperature-quarter
+"", // Icon: temperature-half
+"", // Icon: temperature-three-quarters
+""  // Icon: temperature-full
+],
+"tooltip": true
+},
+
+"tray": {
+"icon-size": 21,
+"spacing": 10
+},
+
+"wlr/taskbar": {
+"on-click": "activate",
+"on-click-middle": "close",
+"ignore-list": [
+"foot"
+]
+},
+"wlr/workspaces": {
+"on-click": "activate",
+},
+
+"group/power": {
+"orientation": "inherit",
+"drawer": {
+"transition-duration": 150,
+"children-class": "drawer-child",
+"transition-left-to-right": false
+},
+"modules": [
+"custom/power", // First element is the "group leader" and won't ever be hidden
+"custom/quit",
+"custom/lock",
+"custom/reboot"
+]
+},
+
+
+"custom/quit": {
+"format": "󰗼",
+"tooltip": false,
+"on-click": ""
+},
+"custom/lock": {
+"format": "󰍁",
+"tooltip": false,
+"on-click": "swaylock"
+},
+"custom/reboot": {
+"format": "󰜉",
+"tooltip": false,
+"on-click": "sudo reboot"
+},
+"custom/power": {
+"format": "",
+"tooltip": false,
+"on-click": "sudo poweroff"
+},
+
+}

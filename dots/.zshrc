@@ -20,7 +20,7 @@ bindkey -e
 [[ $- != *i* ]] && return
 
 if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]]; then
-    exec startx
+    exec dbus-launch niri
 fi
 
 alias wttr='curl https://wttr.in/Natchitoches' 
