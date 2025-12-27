@@ -1,0 +1,69 @@
+#!/bin/sh
+
+if [ ! -d ~/Pictures ]; then
+    mkdir ~/Pictures
+fi &
+
+if [ ! -d ~/Documents ]; then
+    mkdir ~/Documents
+fi &
+
+if [ ! -d ~/Videos ]; then
+    mkdir ~/Videos
+fi &
+
+if [ ! -d ~/Projects ]; then
+    mkdir ~/Projects
+fi &
+
+if [ ! -d ~/org ]; then
+    mkdir ~/org
+fi &
+
+name=$(whoami)
+
+git clone https://github.com/JustinDysarz/nvim.git && cp -r nvim/nvim ~/.config && rm -rf nvim & git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/ &
+
+cp dots/.* ~/ & cp -r dots/neomutt ~/.config & cp -r dots/mpv ~/.config & cp -r dots/newsboat ~/.config & cp -r dots/dmenu ~/.config/ & cp -r scripts ~/ &
+
+if [ ! -d ~/Media ]; then
+    mkdir ~/Media
+fi && cp -r Wallpapers ~/Media || cp -r Wallpapers/* ~/Media/Wallpapers &
+
+if [ ! -d ~/Media/ISO ]; then
+    mkdir ~/Media/ISO
+fi &
+
+if [ ! -d ~/Media/torrents ]; then
+    mkdir ~/Media/torrents
+fi &
+
+
+
+sudo cp ~/.vimrc /root/ &&
+
+if [ ! -f /etc/doas.conf ]; then
+    echo "permit $name as root\npermit persist keepenv $name" | sudo tee /etc/doas.conf &
+fi
+
+    sudo xbps-install -Su ||
+    printf "\n\nThis is not void.\n\nYou are on your own\n\n" && sleep 5;
+
+sudo xbps-install -y firefox yazi clang cmake fzf ripgrep fd bat lsd nerd-fonts nix rust tmux zsh vim neovim emacs xorg xorg-server libX11    \
+    libX11-devel xclip pkgconf xinit wireguard-tools mpv vlc yt-dlp freetype freetype-devel clojure xlockmore libXinerama libXinerama-devel       \
+    libXft libXft-devel dhex mesa alsa-lib alsa-lib-devel alsa-firmware alsa-plugins alsa-plugins-ffmpeg ffmpeg alsa-plugins-jack                 \
+    alsa-plugins-pulseaudio alsa-tools alsa-tools-devel alsa-utils apulse elogind dbus-elogind dbus-elogind-libs dbus-elogind-x11 elogind-devel   \
+    libelogind apulse libao-pulse libpulseaudio pavucontrol linux-firmware sof-firmware pulseaudio pulseaudio-devel pulseeffects-legacy wget curl \
+    man-db man-pages man-pages-devel man-pages-posix feh maim fastfetch opendoas ghc racket qbittorrent neomutt newsboat xrandr libXrandr         \
+    libXrandr-devel openvpn tcc lldb gdb ghidra wireshark libwireshark libwireshark-devel termshark wireshark-qt imv htop btop pywal make nmap    \
+    openbsd-netcat ocaml sbcl libjpeg-turbo libjpeg-turbo-devel libjpeg-turbo-tools exiftool keepassxc kleopatra font-awesome font-emoji-one-color\
+    font-fira-otf font-fira-ttf font-firacode font-hack-ttf font-iosevka noto-fonts-emoji libtool libtool xwayland-satellite wireplumber-elogind  \
+    dbus-glib dbus-glib-devel dbus-libs pipewire alsa-pipewire easyeffects gstreamer1-pipewire libjack-pipewire libpipewire pipewire              \
+    pipewire-devel pipewire-doc wireplumber wireplumber-devel mesa-dri vulkan-loader mesa-vulkan-intel intel-video-accel niri fuzzel mako Waybar  \
+    rust-analyzer qbittorrent flatpak gnome-software kde-plasma texlive groff font-hack-ttf;
+
+if [ ! "$SHELL" = "/usr/bin/zsh" ]; then
+chsh -s /usr/bin/zsh
+fi &&
+
+sudo ln -sf /usr/bin/clang /bin/cc & sudo ln -sf /usr/bin/clang++ /bin/c++ & sudo ln -sf /usr/bin/clang /usr/bin/cc & sudo ln -sf /usr/bin/clang++ /usr/bin/c++
